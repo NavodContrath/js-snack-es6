@@ -5,6 +5,9 @@ Stampare a schermo la bici con peso minore.
  */
 
 //Creare un array di oggetti: Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: nome e peso.
+const displayEl = document.querySelector(".card-body")
+console.log(displayEl);
+
 const bikes = [{
     name: 'BMX',
     weight: 10,
@@ -38,23 +41,28 @@ const bikes = [{
 }
 ]
 //Stampare a schermo la bici con peso minore.
-let weightBikes = []
+let result = bikes[0]
 for (let i = 0; i < bikes.length; i++) {
     const thisBike = bikes[i];
-    weightBikes.push(thisBike.weight)
+    /* weightBikes.push(thisBike.weight) */
+    if (thisBike.weight < result.weight) {
+        result = thisBike
+    }
 }
-//solution with another for loop
+displayEl.innerText = `${result.name} is the least heavy of them all and it weighs only ${result.weight}kg`
+//solution with another for loop and array
+/* 
+let weightBikes = []
+
 let result = weightBikes[0]
 for (let i = 0; i < weightBikes.length; i++) {
     const thisWeight = weightBikes[i];
     if (thisWeight < result) {
         result = thisWeight
     }
-}
-console.log(result);
-//Solution with math min
-const solution = Math.min.apply(null, weightBikes)
-console.log(solution);
+} */
+
+
 
 /* 
 Snack2
@@ -96,7 +104,7 @@ for (let i = 0; i < soccerTeams.length; i++) {
     thisTeam.points = Math.floor(Math.random() * 10)
     thisTeam.fouls = Math.floor(Math.random() * 10)
     //push nel nuovo array
-    nameAndFouls.push(thisTeam.name, thisTeam.fouls)
+    nameAndFouls.push(`${thisTeam.name}: ${thisTeam.fouls}`)
 }
 //stampiamo tutto in console
 console.log(soccerTeams);
